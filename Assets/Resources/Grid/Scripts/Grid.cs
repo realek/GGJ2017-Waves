@@ -6,9 +6,7 @@ public class Grid : MonoBehaviour
 {
     public GameObject gridUnitPrefab;
     [SerializeField]
-    private int m_numberOfRowUnits = 1;
-    [SerializeField]
-    private int m_numberOfColumnUnits = 1;
+    private int m_numberOfUnits = 1;
     [SerializeField]
     private float m_gridUnitDistance = 1.0f;
     [SerializeField]
@@ -28,15 +26,15 @@ public class Grid : MonoBehaviour
     void Start ()
     {
 
-        m_units = new GridUnit[m_numberOfRowUnits][];
+        m_units = new GridUnit[m_numberOfUnits][];
         bool extentscmp = false;
         float cmpUnitOffset = 0.0f;
 
         //fill the grid with units
-        for (int i = 0; i < m_numberOfRowUnits; ++i)
+        for (int i = 0; i < m_numberOfUnits; ++i)
         {
-            m_units[i] = new GridUnit[m_numberOfColumnUnits];
-            for (int j = 0; j < m_numberOfColumnUnits; ++j)
+            m_units[i] = new GridUnit[m_numberOfUnits];
+            for (int j = 0; j < m_numberOfUnits; ++j)
             {
                 GameObject currentUnit = Instantiate(gridUnitPrefab);
 
@@ -70,13 +68,16 @@ public class Grid : MonoBehaviour
     {
         angle += 360 * m_cyclesPerSecond * Time.deltaTime;
         angle %= 360;
-
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    InterpolateDiamond();
+        //}
         for (int i = 0; i < m_units.Length; ++i)
         {
             for (int j = 0; j < m_units[i].Length; ++j)
             {
                 InterpolateUnit(i, j);
-                DampenUnit(m_units[i][j]);
+                DampenUnit (m_units[i][j]);
             }
         }
     }
@@ -96,7 +97,7 @@ public class Grid : MonoBehaviour
             {
                 if (k != i || l != j)
                 {
-                    if (IsInsideBounds(k, 0, m_numberOfRowUnits) && IsInsideBounds(l, 0, m_numberOfColumnUnits))
+                    if (IsInsideBounds(k, 0, m_numberOfUnits) && IsInsideBounds(l, 0, m_numberOfUnits))
                     {
                         ++numberOfUnitsInterpolated;
                         value = m_units[k][l].amplitude;
@@ -108,6 +109,60 @@ public class Grid : MonoBehaviour
         if (calculatedAmplitude > Mathf.Epsilon)
         {
             m_units[i][j].amplitude += calculatedAmplitude * Time.deltaTime;
+        }
+    }
+
+    public void InterpolateDiamond ()
+    {
+        int i, j, latice;
+        float midPoint;
+
+        for (latice = m_numberOfUnits-1; latice >= 2; latice /= 2)
+        {
+            int halfLatice = latice / 2;
+            for (i = 0; i < m_numberOfUnits; i += latice)
+            {
+                if (i + latice > m_numberOfUnits)
+                    break;
+                for (j = 0; j < m_numberOfUnits; j += latice)
+                {
+                    Debug.Log(j);
+                    if (j+latice > m_numberOfUnits)
+                        break;
+                    midPoint = m_units[i][j].amplitude;
+                    midPoint += m_units[i + latice][j].amplitude;
+                    print(i + " " + (j + latice));
+                    midPoint += m_units[i][j + latice].amplitude;
+                    midPoint += m_units[i + latice][j + latice].amplitude;
+                    midPoint /= 4.0f;
+
+                    m_units[i + halfLatice][j + halfLatice].amplitude = midPoint;
+
+                }
+            }
+
+            for (i = 0; i <= m_numberOfUnits; i += halfLatice)
+            {
+                if (i + halfLatice > m_numberOfUnits)
+                    break;
+                for (j = (i + halfLatice) % latice; j < m_numberOfUnits; j += latice)
+                {
+                    if (j + halfLatice > m_numberOfUnits)
+                        break;
+                    midPoint = m_units[(i - halfLatice + m_numberOfUnits) % m_numberOfUnits][j].amplitude;
+                    midPoint += m_units[(i + halfLatice) % m_numberOfUnits][j].amplitude;
+                    midPoint += m_units[i][(j - halfLatice + m_numberOfUnits) % m_numberOfUnits].amplitude;
+                    midPoint += m_units[i][(j + halfLatice) % m_numberOfUnits].amplitude;
+
+                    midPoint /= 4.0f;
+                    m_units[i][ j].amplitude = midPoint;
+
+                    if (i == 0)
+                        m_units[m_numberOfUnits][ j].amplitude = midPoint;
+                    if (j == 0)
+                        m_units[i][ m_numberOfUnits].amplitude = midPoint;
+                }
+            }
         }
     }
 
