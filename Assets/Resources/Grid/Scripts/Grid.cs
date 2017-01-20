@@ -21,7 +21,8 @@ public class Grid : MonoBehaviour
     private float m_dampingFactor = 0.98f;
 
     public float angle;
-
+    [SerializeField]
+    GridUnit m_SelectedUnit;
     // Use this for initialization
     void Start ()
     {
@@ -82,6 +83,10 @@ public class Grid : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        SelectGridUnit();
+    }
     private void DampenUnit (GridUnit unit)
     {
         unit.amplitude *= m_dampingFactor;
@@ -180,5 +185,21 @@ public class Grid : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+
+    void SelectGridUnit()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            if (m_SelectedUnit != null && m_SelectedUnit.gameObject == hit.collider.gameObject)
+                return;
+            m_SelectedUnit = hit.collider.gameObject.GetComponent<GridUnit>();
+            Debug.Log("Selected Unit" + hit.collider.name);
+        }
+        else
+            m_SelectedUnit = null;
     }
 }
