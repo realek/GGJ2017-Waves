@@ -58,6 +58,7 @@ public class Grid : MonoBehaviour
 
                 GridUnit currentGridUnit = currentUnit.GetComponent<GridUnit>();
                 currentGridUnit.parent = this;
+                currentGridUnit.SetCallback(this);
                 m_units[i][j] = currentGridUnit;
             }
         }
@@ -74,6 +75,11 @@ public class Grid : MonoBehaviour
 
             }
         }
+    }
+
+    public void SetSelected(GameObject gridUnit)
+    {
+        Debug.Log("selected is" + gridUnit.name);
     }
 
 }
