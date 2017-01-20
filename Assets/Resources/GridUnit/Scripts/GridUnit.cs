@@ -1,20 +1,33 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridUnit : MonoBehaviour {
-
+[RequireComponent(typeof(Rigidbody))]
+public class GridUnit : MonoBehaviour
+{
     [SerializeField]
-    private float m_force = 100;
+    private float m_amplitude = 1;
+
+
     private Rigidbody m_rb;
-	// Use this for initialization
-	void Start () {
 
+    public Grid parent;
+
+    public float angle
+    {
+        get
+        {
+            return parent.angle;
+        }
+    }
+
+    void Awake ()
+    {
         m_rb = GetComponent<Rigidbody>();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+    }
 
-	}
+    private void Update ()
+    {
+        transform.position = new Vector3(transform.position.x, m_amplitude * Mathf.Sin(angle * Mathf.Deg2Rad), transform.position.z);
+    }
 }
