@@ -1,14 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AsteroidButton : MonoBehaviour
 {
     public Player player;
     public Asteroid asteroid;
+    public Image timerImage;
 
     [SerializeField]
     private float fireRate;
+
+    /// <summary>
+    /// Returns 0 to 1 values.
+    /// </summary>
+    public float fireRatePercentage
+    {
+        get
+        {
+            return m_timeUntilFire / fireRate;
+        }
+    }
 
     public bool canFire
     {
@@ -31,9 +44,7 @@ public class AsteroidButton : MonoBehaviour
         {
             m_timeUntilFire -= Time.deltaTime;
         }
-        else
-        {
-        }
+        timerImage.fillAmount = fireRatePercentage;
     }
 
     public void Fire ()

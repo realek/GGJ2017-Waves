@@ -20,14 +20,9 @@ public class Grid : MonoBehaviour
     [SerializeField]
     private float m_maxAmplitudeInterval = 20;
 
-    [SerializeField, Range(0.01f, 100)]
-    private float m_cyclesPerSecond = 1;
-
-
     [SerializeField, Range(0.001f, 1.0f)]
     private float m_dampingFactor = 0.98f;
 
-    public float angle;
     private GridUnit[][] m_units;
     [SerializeField]
     private GridUnit m_SelectedUnit;
@@ -48,10 +43,6 @@ public class Grid : MonoBehaviour
 
     private void Update ()
     {
-        angle += 360 * m_cyclesPerSecond * Time.deltaTime;
-        angle %= 360;
-
-
         if (m_currentInterval > 0)
         {
             m_currentInterval -= Time.deltaTime;
@@ -66,7 +57,13 @@ public class Grid : MonoBehaviour
             for (int j = 0; j < m_units[i].Length; ++j)
             {
                 InterpolateUnit(i, j);
-                // DampenUnit(m_units[i][j]);
+            }
+        }
+        for (int i = 0; i < m_units.Length; ++i)
+        {
+            for (int j = 0; j < m_units[i].Length; ++j)
+            {
+                DampenUnit(m_units[i][j]);
             }
         }
 
@@ -74,7 +71,7 @@ public class Grid : MonoBehaviour
 
     private void FixedUpdate ()
     {
-        
+
     }
 
     private void DampenUnit (GridUnit unit)
@@ -172,7 +169,7 @@ public class Grid : MonoBehaviour
             if (m_SelectedUnit != null && m_SelectedUnit.gameObject == hit.collider.gameObject)
                 return;
             m_SelectedUnit = hit.collider.gameObject.GetComponent<GridUnit>();
-            Debug.Log("Selected Unit" + hit.collider.name);
+            //Debug.Log("Selected Unit" + hit.collider.name);
         }
         else
         {
