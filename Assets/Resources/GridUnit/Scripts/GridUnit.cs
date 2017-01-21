@@ -21,15 +21,7 @@ public class GridUnit : MonoBehaviour
     private Rigidbody m_rb;
 
     public Grid parent;
-
-    public float angle
-    {
-        get
-        {
-            return parent.angle;
-        }
-    }
-
+    
     void Awake ()
     {
         m_rb = GetComponent<Rigidbody>();
