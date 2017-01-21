@@ -53,9 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridUnitPrefab: {fileID: 1825810450173446, guid: 0a4cf9888b9943742966cc5cb1218db1,
     type: 2}
-  m_numberOfUnits: 75
+  m_numberOfUnits: 30
+  m_interpolationSize: 1
   m_gridUnitDistance: 0.25
-  m_affectedAreaDropoff: 1
   m_interval: 1
   m_minAmplitudeInterval: 0
   m_maxAmplitudeInterval: 1
