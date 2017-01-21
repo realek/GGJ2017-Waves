@@ -404,6 +404,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
+        type: 2}
+      propertyPath: m_damp
+      value: 77.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89da4bedb92e3244ea9200e5d6d6cafe, type: 2}
   m_IsPrefabParent: 0
