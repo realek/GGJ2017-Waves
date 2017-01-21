@@ -8,9 +8,9 @@ public class Grid : MonoBehaviour
     [SerializeField]
     private int m_numberOfUnits = 1;
     [SerializeField]
-    private float m_gridUnitDistance = 1.0f;
+    private int m_interpolationSize = 1;
     [SerializeField]
-    private float m_affectedAreaDropoff = 0.0f;
+    private float m_gridUnitDistance = 1.0f;
 
     [SerializeField]
     private float m_interval;
@@ -84,12 +84,11 @@ public class Grid : MonoBehaviour
 
     private void InterpolateUnit (int i, int j)
     {
-        int interpolateNeighbor = 1;
         float value = 0;
         float numberOfUnitsInterpolated = 0;
-        for (int k = i - interpolateNeighbor; k <= i + interpolateNeighbor; ++k)
+        for (int k = i - m_interpolationSize; k <= i + m_interpolationSize; ++k)
         {
-            for (int l = j - interpolateNeighbor; l <= j + interpolateNeighbor; ++l)
+            for (int l = j - m_interpolationSize; l <= j + m_interpolationSize; ++l)
             {
                 if (k != i || l != j)
                 {
@@ -104,7 +103,7 @@ public class Grid : MonoBehaviour
         float calculatedAmplitude = value / numberOfUnitsInterpolated;
         if (calculatedAmplitude > Mathf.Epsilon)
         {
-            m_units[i][j].posY = calculatedAmplitude * Time.fixedDeltaTime;
+            m_units[i][j].posY = calculatedAmplitude;
         }
     }
 

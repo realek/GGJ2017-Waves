@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,9 +60,9 @@ public class Gridv2 : MonoBehaviour {
             float zUnit = (bounds.max.z - bounds.min.z) / rowCols;
             float x = (bounds.max.x - bounds.min.x) - ((bounds.max.x - bounds.min.x) * hit.textureCoord.x);
             float z = (bounds.max.z - bounds.min.z) - ((bounds.max.z - bounds.min.z) * hit.textureCoord.y);
-            float c = (x/xUnit * );
-            float r = (z/zUnit * );
-            MakeSplash((int)c, (int)r,1);
+           // float c = (x/xUnit * );
+          //  float r = (z/zUnit * );
+            //MakeSplash((int)c, (int)r,1);
         }
     }
 

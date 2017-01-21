@@ -51,12 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c655fb88d7a546143a5a3739d2b78355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridUnitPrefab: {fileID: 1812162053826776, guid: f0bfb41fdb6421c45bf7b37bde6d9c1a,
+  gridUnitPrefab: {fileID: 1825810450173446, guid: 0a4cf9888b9943742966cc5cb1218db1,
     type: 2}
-  m_numberOfUnits: 25
+  m_numberOfUnits: 75
   m_gridUnitDistance: 0.25
-  m_affectedAreaDropoff: 0
+  m_affectedAreaDropoff: 1
+  m_interval: 1
+  m_minAmplitudeInterval: 0
+  m_maxAmplitudeInterval: 1
   m_cyclesPerSecond: 1
-  m_dampingFactor: 0.98
+  m_dampingFactor: 1
   angle: 0
   m_SelectedUnit: {fileID: 0}

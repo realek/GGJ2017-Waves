@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 665357734}
   - component: {fileID: 665357733}
   - component: {fileID: 665357732}
+  - component: {fileID: 665357735}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -410,7 +411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 196.20001, y: 252.09998}
+  m_AnchoredPosition: {x: 196.20001, y: 121}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665357732
@@ -451,7 +452,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 665357733}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 665357735}
+        m_MethodName: SelectButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &665357733
@@ -487,6 +499,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 665357730}
+--- !u!114 &665357735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665357730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f310120757ac74f45b5e559b70a63b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1890527545}
+  asteroid: {fileID: 114262312042547408, guid: 0cc8d589bfd711849917b6695da55fe9, type: 2}
+  fireRate: 3
+  m_timeUntilFire: 0
 --- !u!1001 &671152805
 Prefab:
   m_ObjectHideFlags: 0
@@ -540,6 +567,7 @@ GameObject:
   - component: {fileID: 707259598}
   - component: {fileID: 707259597}
   - component: {fileID: 707259596}
+  - component: {fileID: 707259599}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -563,7 +591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 196.20001, y: 220}
+  m_AnchoredPosition: {x: 196.20001, y: 89}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707259596
@@ -604,7 +632,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 707259597}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707259599}
+        m_MethodName: SelectButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &707259597
@@ -640,6 +679,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 707259594}
+--- !u!114 &707259599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 707259594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f310120757ac74f45b5e559b70a63b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1890527545}
+  asteroid: {fileID: 114262312042547408, guid: 75f93eef0d98090469d86aaec08e2cd2, type: 2}
+  fireRate: 3
+  m_timeUntilFire: 0
 --- !u!1 &896618467
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +1025,7 @@ Prefab:
     - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
         type: 2}
       propertyPath: m_gridUnitDistance
-      value: 0.28
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
         type: 2}
@@ -982,7 +1036,7 @@ Prefab:
     - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
         type: 2}
       propertyPath: m_interval
-      value: 99999
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
         type: 2}
@@ -992,7 +1046,7 @@ Prefab:
     - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
         type: 2}
       propertyPath: m_maxAmplitudeInterval
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89da4bedb92e3244ea9200e5d6d6cafe, type: 2}
@@ -1108,6 +1162,7 @@ GameObject:
   - component: {fileID: 1776204523}
   - component: {fileID: 1776204522}
   - component: {fileID: 1776204521}
+  - component: {fileID: 1776204524}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -1131,7 +1186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 196.20001, y: 164}
+  m_AnchoredPosition: {x: 196.20001, y: 48}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1776204521
@@ -1172,7 +1227,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1776204522}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1776204524}
+        m_MethodName: SelectButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1776204522
@@ -1208,3 +1274,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1776204519}
+--- !u!114 &1776204524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1776204519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f310120757ac74f45b5e559b70a63b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1890527545}
+  asteroid: {fileID: 114262312042547408, guid: 31f8fd0076518cf44ac01f1801d197d5, type: 2}
+  fireRate: 3
+  m_timeUntilFire: 0
+--- !u!114 &1890527545 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114776132704277536, guid: 0ea982024a2f8c940a0c1a3fb0c7592b,
+    type: 2}
+  m_PrefabInternal: {fileID: 299601879}
+  m_Script: {fileID: 11500000, guid: 51c9d82a7b2405542b05af09a371b5d5, type: 3}
