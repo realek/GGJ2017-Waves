@@ -123,3 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TTL: 0.15
+  particleSystemExplosionSmall: {fileID: 1131327759495842, guid: 6214e452032d52846bab042fb598a725,
+    type: 2}
+  particleSystemExplosionBig: {fileID: 1717284850573074, guid: 7245ec5cbc90b214bba0879ccba7fdc7,
+    type: 2}
