@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,10 +48,46 @@ public class Gridv2 : MonoBehaviour {
         MakeSplash(rowCols / 2, rowCols / 2, 1);
 	}
 
-
-    void MakeSplash(int x, int y, float splashMagMult)
+    private void OnCollisionEnter(Collision collision)
     {
-        int pos = ((x * (rowCols + 1)) + y);
+        GameObject caster = collision.gameObject;
+        RaycastHit hit;
+        Vector3 dir = transform.position - caster.transform.position;
+        if (Physics.Raycast(caster.transform.position, dir, out hit, 10))
+        {
+            Bounds bounds = m_mesh.bounds;
+            float xUnit = (bounds.max.x - bounds.min.x) / rowCols;
+            float zUnit = (bounds.max.z - bounds.min.z) / rowCols;
+            float x = (bounds.max.x - bounds.min.x) - ((bounds.max.x - bounds.min.x) * hit.textureCoord.x);
+            float z = (bounds.max.z - bounds.min.z) - ((bounds.max.z - bounds.min.z) * hit.textureCoord.y);
+            float c = (x/xUnit * );
+            float r = (z/zUnit * );
+            MakeSplash((int)c, (int)r,1);
+        }
+    }
+
+    void checkInput()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                Bounds bounds = m_mesh.bounds;
+                float xStep = (bounds.max.x - bounds.min.x) / rowCols;
+                float zStep = (bounds.max.z - bounds.min.z) / rowCols;
+                float xCoord = (bounds.max.x - bounds.min.x) - ((bounds.max.x - bounds.min.x) * hit.textureCoord.x);
+                float zCoord = (bounds.max.z - bounds.min.z) - ((bounds.max.z - bounds.min.z) * hit.textureCoord.y);
+                float column = (xCoord / xStep);// + 0.5;
+                float row = (zCoord / zStep);// + 0.5;
+                MakeSplash((int)column, (int)row,1);
+            }
+        }
+    }
+
+        void MakeSplash(int x, int y, float splashMagMult)
+    {
+        int pos = ((y * (rowCols + 1)) + x);
         m_wBufferA[pos] = (int)(splashForceBase * splashMagMult);
         m_wBufferA[pos - 1] = (int)(splashForceBase * splashMagMult);
         m_wBufferA[pos + 1] = (int)(splashForceBase * splashMagMult);
@@ -82,6 +119,9 @@ public class Gridv2 : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+        checkInput();
+
         int[] cwBuffer;
         if (swapMe)
         {
