@@ -5,23 +5,38 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public AsteroidButton selectedAsteroidButton;
-    public Grid targetGrid;
-
+    [SerializeField]
+    private GameObject ship;
+    [SerializeField]
+    private Grid targetGrid;
+    public float verticalShipOffset = 20.0f;
     private void Update ()
     {
-        if (Input.GetKey(KeyCode.Space))
+
+
+        if (Input.GetKey(KeyCode.Mouse1))
         {
-            if (selectedAsteroidButton != null)
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit))
             {
-                if (selectedAsteroidButton.canFire && targetGrid.SelectedUnit != null)
-                {
-                    selectedAsteroidButton.Fire();
-                    Rigidbody meteor = Instantiate(selectedAsteroidButton.asteroid.gameObject).GetComponent<Rigidbody>();
-                    meteor.transform.position = gameObject.transform.position;
-                    var dir = targetGrid.SelectedUnit.transform.position - meteor.transform.position;
-                    meteor.AddForce(dir.normalized * selectedAsteroidButton.asteroid.velocity, ForceMode.VelocityChange);
-                }
+                
             }
         }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    if (selectedAsteroidButton != null)
+        //    {
+        //        if (selectedAsteroidButton.canFire && targetGrid.SelectedUnit != null)
+        //        {
+        //            selectedAsteroidButton.Fire();
+        //            Rigidbody meteor = Instantiate(selectedAsteroidButton.asteroid.gameObject).GetComponent<Rigidbody>();
+        //            meteor.transform.position = gameObject.transform.position;
+        //            var dir = targetGrid.SelectedUnit.transform.position - meteor.transform.position;
+        //            meteor.AddForce(dir.normalized * selectedAsteroidButton.asteroid.velocity, ForceMode.VelocityChange);
+        //        }
+        //    }
+        //}
+
+
     }
 }
