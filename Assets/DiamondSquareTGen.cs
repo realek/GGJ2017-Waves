@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class DiamondSquareTGen : MonoBehaviour {
@@ -41,7 +41,6 @@ public class DiamondSquareTGen : MonoBehaviour {
 
     void Generate()
     {
-
         //init arr
         int i, j, latice;
         float midPoint;

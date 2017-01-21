@@ -39,6 +39,12 @@ public class GridUnit : MonoBehaviour
 
     private void Update ()
     {
-        transform.position = new Vector3(transform.position.x, amplitude * Mathf.Sin(angle * Mathf.Deg2Rad), transform.position.z);
+        float calculateY = amplitude * Mathf.Sin(angle * Mathf.Deg2Rad)+amplitude/3*Mathf.Sin((angle+44)*Mathf.Deg2Rad);
+        transform.position = new Vector3(transform.position.x, calculateY, transform.position.z);
+    }
+
+    public void AddAmplitude (float amount)
+    {
+        amplitude += amount;
     }
 }

@@ -354,17 +354,42 @@ Prefab:
     - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
         type: 2}
       propertyPath: m_numberOfRowUnits
-      value: 64
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
         type: 2}
       propertyPath: m_numberOfColumnUnits
-      value: 64
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
         type: 2}
       propertyPath: m_gridUnitDistance
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
+        type: 2}
+      propertyPath: m_dampingFactor
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
+        type: 2}
+      propertyPath: m_numberOfUnits
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
+        type: 2}
+      propertyPath: m_minAmplitudeInterval
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
+        type: 2}
+      propertyPath: m_maxAmplitudeInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962199340650330, guid: 89da4bedb92e3244ea9200e5d6d6cafe,
+        type: 2}
+      propertyPath: m_interval
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89da4bedb92e3244ea9200e5d6d6cafe, type: 2}

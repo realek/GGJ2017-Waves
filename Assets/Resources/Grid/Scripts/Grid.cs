@@ -13,20 +13,112 @@ public class Grid : MonoBehaviour
     private float m_affectedAreaDropoff = 0.0f;
     private GridUnit[][] m_units;
 
-    [Range(0.01f, 100)]
     [SerializeField]
-    private float m_cyclesPerSecond = 1;
+    private float m_interval = 0.2f;
 
     [SerializeField]
+    private float m_minAmplitudeInterval = 10;
+    [SerializeField]
+    private float m_maxAmplitudeInterval = 20;
+
+    [SerializeField, Range(0.01f, 100)]
+    private float m_cyclesPerSecond = 1;
+
+
+    [SerializeField, Range(0.001f, 1.0f)]
     private float m_dampingFactor = 0.98f;
 
     public float angle;
     [SerializeField]
-    GridUnit m_SelectedUnit;
+    private GridUnit m_SelectedUnit;
+
+    private float m_currentInterval;
+
     // Use this for initialization
     void Start ()
     {
+        GenerateGrid();
+    }
 
+    private void Update ()
+    {
+        angle += 360 * m_cyclesPerSecond * Time.deltaTime;
+        angle %= 360;
+
+
+        if (m_currentInterval > 0)
+        {
+            m_currentInterval -= Time.deltaTime;
+        }
+        else
+        {
+            m_units[Random.Range(0, m_numberOfUnits)][Random.Range(0, m_numberOfUnits)].AddAmplitude(Random.Range(m_minAmplitudeInterval, m_maxAmplitudeInterval));
+        }
+
+        for (int i = 0; i < m_units.Length; ++i)
+        {
+            for (int j = 0; j < m_units[i].Length; ++j)
+            {
+                InterpolateUnit(i, j);
+                DampenUnit(m_units[i][j]);
+            }
+        }
+    }
+
+    private void FixedUpdate ()
+    {
+        SelectGridUnit();
+    }
+
+    private void DampenUnit (GridUnit unit)
+    {
+        unit.amplitude *= m_dampingFactor;
+    }
+
+    private void InterpolateUnit (int i, int j)
+    {
+        int interpolateNeighbor = 1;
+        float value = 0;
+        float numberOfUnitsInterpolated = 0;
+        for (int k = i - interpolateNeighbor; k <= i + interpolateNeighbor; ++k)
+        {
+            for (int l = j - interpolateNeighbor; l <= j + interpolateNeighbor; ++l)
+            {
+                if (k != i || l != j)
+                {
+                    if (IsInsideBounds(k, 0, m_numberOfUnits) && IsInsideBounds(l, 0, m_numberOfUnits))
+                    {
+                        ++numberOfUnitsInterpolated;
+                        value += m_units[k][l].amplitude;
+                    }
+                }
+            }
+        }
+        float calculatedAmplitude = value / numberOfUnitsInterpolated;
+        if (calculatedAmplitude > Mathf.Epsilon)
+        {
+            m_units[i][j].amplitude += calculatedAmplitude * Time.deltaTime;
+        }
+    }
+
+    /// <summary>
+    /// Tests if value is between minBound(inclusive) and maxBound(inclusive).
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="minBound"></param>
+    /// <param name="maxBound"></param>
+    /// <returns></returns>
+    public bool IsInsideBounds (int value, int minBound, int maxBound)
+    {
+        if (value >= minBound && value < maxBound)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void GenerateGrid ()
+    {
         m_units = new GridUnit[m_numberOfUnits][];
         bool extentscmp = false;
         float cmpUnitOffset = 0.0f;
@@ -65,130 +157,7 @@ public class Grid : MonoBehaviour
         }
     }
 
-    private void Update ()
-    {
-        angle += 360 * m_cyclesPerSecond * Time.deltaTime;
-        angle %= 360;
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    InterpolateDiamond();
-        //}
-        for (int i = 0; i < m_units.Length; ++i)
-        {
-            for (int j = 0; j < m_units[i].Length; ++j)
-            {
-                InterpolateUnit(i, j);
-                DampenUnit (m_units[i][j]);
-            }
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        SelectGridUnit();
-    }
-    private void DampenUnit (GridUnit unit)
-    {
-        unit.amplitude *= m_dampingFactor;
-    }
-
-    private void InterpolateUnit (int i, int j)
-    {
-        float value = 0;
-        float numberOfUnitsInterpolated = 0;
-        for (int k = i - 1; k <= i + 1; ++k)
-        {
-            for (int l = j - 1; l <= j + 1; ++l)
-            {
-                if (k != i || l != j)
-                {
-                    if (IsInsideBounds(k, 0, m_numberOfUnits) && IsInsideBounds(l, 0, m_numberOfUnits))
-                    {
-                        ++numberOfUnitsInterpolated;
-                        value = m_units[k][l].amplitude;
-                    }
-                }
-            }
-        }
-        float calculatedAmplitude = value / numberOfUnitsInterpolated;
-        if (calculatedAmplitude > Mathf.Epsilon)
-        {
-            m_units[i][j].amplitude += calculatedAmplitude * Time.deltaTime;
-        }
-    }
-
-    public void InterpolateDiamond ()
-    {
-        int i, j, latice;
-        float midPoint;
-
-        for (latice = m_numberOfUnits-1; latice >= 2; latice /= 2)
-        {
-            int halfLatice = latice / 2;
-            for (i = 0; i < m_numberOfUnits; i += latice)
-            {
-                if (i + latice > m_numberOfUnits)
-                    break;
-                for (j = 0; j < m_numberOfUnits; j += latice)
-                {
-                    Debug.Log(j);
-                    if (j+latice > m_numberOfUnits)
-                        break;
-                    midPoint = m_units[i][j].amplitude;
-                    midPoint += m_units[i + latice][j].amplitude;
-                    print(i + " " + (j + latice));
-                    midPoint += m_units[i][j + latice].amplitude;
-                    midPoint += m_units[i + latice][j + latice].amplitude;
-                    midPoint /= 4.0f;
-
-                    m_units[i + halfLatice][j + halfLatice].amplitude = midPoint;
-
-                }
-            }
-
-            for (i = 0; i <= m_numberOfUnits; i += halfLatice)
-            {
-                if (i + halfLatice > m_numberOfUnits)
-                    break;
-                for (j = (i + halfLatice) % latice; j < m_numberOfUnits; j += latice)
-                {
-                    if (j + halfLatice > m_numberOfUnits)
-                        break;
-                    midPoint = m_units[(i - halfLatice + m_numberOfUnits) % m_numberOfUnits][j].amplitude;
-                    midPoint += m_units[(i + halfLatice) % m_numberOfUnits][j].amplitude;
-                    midPoint += m_units[i][(j - halfLatice + m_numberOfUnits) % m_numberOfUnits].amplitude;
-                    midPoint += m_units[i][(j + halfLatice) % m_numberOfUnits].amplitude;
-
-                    midPoint /= 4.0f;
-                    m_units[i][ j].amplitude = midPoint;
-
-                    if (i == 0)
-                        m_units[m_numberOfUnits][ j].amplitude = midPoint;
-                    if (j == 0)
-                        m_units[i][ m_numberOfUnits].amplitude = midPoint;
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    /// Tests if value is between minBound(inclusive) and maxBound(inclusive).
-    /// </summary>
-    /// <param name="value"></param>
-    /// <param name="minBound"></param>
-    /// <param name="maxBound"></param>
-    /// <returns></returns>
-    public bool IsInsideBounds (int value, int minBound, int maxBound)
-    {
-        if (value >= minBound && value < maxBound)
-        {
-            return true;
-        }
-        return false;
-    }
-
-
-    void SelectGridUnit()
+    void SelectGridUnit ()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -200,6 +169,9 @@ public class Grid : MonoBehaviour
             Debug.Log("Selected Unit" + hit.collider.name);
         }
         else
+        {
             m_SelectedUnit = null;
+        }
     }
 }
+
