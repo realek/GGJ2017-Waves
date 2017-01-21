@@ -11,25 +11,27 @@ public class Player : MonoBehaviour
     private NavMeshAgent m_shipAgent;
     [SerializeField]
     private Grid targetGrid;
+    [SerializeField]
     private Transform m_navplane;
 
-    private void Awake()
+    private void Awake ()
     {
         m_shipAgent = m_ship.GetComponent<NavMeshAgent>();
     }
     private void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
             {
                 Vector3 projectedPos = hit.point;
                 projectedPos.y = m_navplane.position.y;
-                m_shipAgent.SetDestination(projectedPos);
+                if (projectedPos != m_shipAgent.destination)
+                    m_shipAgent.SetDestination(projectedPos);
             }
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             if (selectedAsteroidButton != null)
             {
@@ -41,7 +43,7 @@ public class Player : MonoBehaviour
                     var dir = targetGrid.SelectedUnit.transform.position - meteor.transform.position;
                     meteor.AddForce(dir.normalized * selectedAsteroidButton.asteroid.velocity, ForceMode.VelocityChange);
                 }
-               
+
             }
         }
 

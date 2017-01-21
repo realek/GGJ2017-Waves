@@ -9,13 +9,18 @@ ModelImporter:
     100002: Cube
     100004: Lamp
     100006: //RootNode
+    100008: Afterburners
     400000: Camera
     400002: Cube
     400004: Lamp
     400006: //RootNode
+    400008: Afterburners
     2300000: Cube
+    2300002: Afterburners
     3300000: Cube
+    3300002: Afterburners
     4300000: Cube
+    4300002: Afterburners
   materials:
     importMaterials: 1
     materialName: 0
