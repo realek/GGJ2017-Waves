@@ -11,10 +11,9 @@ public class Grid : MonoBehaviour
     private float m_gridUnitDistance = 1.0f;
     [SerializeField]
     private float m_affectedAreaDropoff = 0.0f;
-    private GridUnit[][] m_units;
 
     [SerializeField]
-    private float m_interval = 0.2f;
+    private float m_interval;
 
     [SerializeField]
     private float m_minAmplitudeInterval = 10;
@@ -29,9 +28,16 @@ public class Grid : MonoBehaviour
     private float m_dampingFactor = 0.98f;
 
     public float angle;
+    private GridUnit[][] m_units;
     [SerializeField]
     private GridUnit m_SelectedUnit;
-    public GridUnit SelectedUnit { get { return m_SelectedUnit; } }
+    public GridUnit SelectedUnit
+    {
+        get
+        {
+            return m_SelectedUnit;
+        }
+    }
     private float m_currentInterval;
 
     // Use this for initialization
@@ -54,25 +60,26 @@ public class Grid : MonoBehaviour
         {
             m_units[Random.Range(0, m_numberOfUnits)][Random.Range(0, m_numberOfUnits)].AddAmplitude(Random.Range(m_minAmplitudeInterval, m_maxAmplitudeInterval));
         }
-
+        SelectGridUnit();
         for (int i = 0; i < m_units.Length; ++i)
         {
             for (int j = 0; j < m_units[i].Length; ++j)
             {
                 InterpolateUnit(i, j);
-                DampenUnit(m_units[i][j]);
+                // DampenUnit(m_units[i][j]);
             }
         }
+
     }
 
     private void FixedUpdate ()
     {
-        SelectGridUnit();
+        
     }
 
     private void DampenUnit (GridUnit unit)
     {
-        unit.amplitude *= m_dampingFactor;
+        unit.posY *= m_dampingFactor;
     }
 
     private void InterpolateUnit (int i, int j)
@@ -89,7 +96,7 @@ public class Grid : MonoBehaviour
                     if (IsInsideBounds(k, 0, m_numberOfUnits) && IsInsideBounds(l, 0, m_numberOfUnits))
                     {
                         ++numberOfUnitsInterpolated;
-                        value += m_units[k][l].amplitude;
+                        value += m_units[k][l].posY;
                     }
                 }
             }
@@ -97,7 +104,7 @@ public class Grid : MonoBehaviour
         float calculatedAmplitude = value / numberOfUnitsInterpolated;
         if (calculatedAmplitude > Mathf.Epsilon)
         {
-            m_units[i][j].amplitude += calculatedAmplitude * Time.deltaTime;
+            m_units[i][j].posY = calculatedAmplitude * Time.fixedDeltaTime;
         }
     }
 

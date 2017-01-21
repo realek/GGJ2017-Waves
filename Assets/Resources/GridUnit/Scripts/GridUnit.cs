@@ -5,17 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class GridUnit : MonoBehaviour
 {
-    [SerializeField]
-    private float m_amplitude = 1;
-    public float amplitude
+    public float posY
     {
         get
         {
-            return m_amplitude;
+            return transform.position.y;
         }
         set
         {
-            m_amplitude = value;
+            transform.position = new Vector3(transform.position.x, value, transform.position.z);
         }
     }
 
@@ -37,14 +35,8 @@ public class GridUnit : MonoBehaviour
         m_rb = GetComponent<Rigidbody>();
     }
 
-    private void Update ()
-    {
-        float calculateY = amplitude * Mathf.Sin(angle * Mathf.Deg2Rad)+amplitude/3*Mathf.Sin((angle+44)*Mathf.Deg2Rad);
-        transform.position = new Vector3(transform.position.x, calculateY, transform.position.z);
-    }
-
     public void AddAmplitude (float amount)
     {
-        amplitude += amount;
+        posY += amount;
     }
 }
