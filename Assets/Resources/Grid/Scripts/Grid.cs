@@ -31,7 +31,7 @@ public class Grid : MonoBehaviour
     public float angle;
     [SerializeField]
     private GridUnit m_SelectedUnit;
-
+    public GridUnit SelectedUnit { get { return m_SelectedUnit; } }
     private float m_currentInterval;
 
     // Use this for initialization
