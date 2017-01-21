@@ -17,7 +17,6 @@ public class GridUnit : MonoBehaviour
         }
     }
 
-
     private Rigidbody m_rb;
 
     public Grid parent;
