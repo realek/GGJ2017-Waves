@@ -22,7 +22,8 @@ public class Grid : MonoBehaviour
 
     public float angle;
     [SerializeField]
-    GridUnit m_SelectedUnit;
+    private GridUnit m_SelectedUnit;
+    public GridUnit SelectedUnit { get { return m_SelectedUnit; } }
     // Use this for initialization
     void Start ()
     {
@@ -105,7 +106,7 @@ public class Grid : MonoBehaviour
                     if (IsInsideBounds(k, 0, m_numberOfUnits) && IsInsideBounds(l, 0, m_numberOfUnits))
                     {
                         ++numberOfUnitsInterpolated;
-                        value = m_units[k][l].amplitude;
+                        value += m_units[k][l].amplitude;
                     }
                 }
             }
