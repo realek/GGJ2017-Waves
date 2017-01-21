@@ -51,10 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c9d82a7b2405542b05af09a371b5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorPrefab: {fileID: 1880193803856880, guid: 0cc8d589bfd711849917b6695da55fe9,
-    type: 2}
-  targetGrid: {fileID: 0}
-  m_maxScaleFactor: 3
-  m_maxForceFactor: 5
-  m_baseForce: 100
-  m_meteorCD: 2
+  selectedAsteroidButton: {fileID: 0}
+  m_ship: {fileID: 0}
+  m_navplane: {fileID: 0}

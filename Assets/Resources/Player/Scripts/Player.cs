@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
     public AsteroidButton selectedAsteroidButton;
     [SerializeField]
-    private GameObject ship;
+    private GameObject m_ship;
+    private NavMeshAgent m_shipAgent;
     [SerializeField]
-    private Grid targetGrid;
-    public float verticalShipOffset = 20.0f;
+    private Transform m_navplane;
+
+    private void Awake()
+    {
+        m_shipAgent = m_ship.GetComponent<NavMeshAgent>();
+    }
     private void Update ()
     {
 
@@ -19,6 +25,9 @@ public class Player : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit))
             {
+                Vector3 projectedPos = hit.point;
+                projectedPos.y = m_navplane.position.y;
+                m_shipAgent.SetDestination(projectedPos);
                 
             }
         }
