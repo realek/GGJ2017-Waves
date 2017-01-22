@@ -124,8 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourcePrefab: {fileID: 1089722489247476, guid: 7f8e43104dcbb4d4182478a0689551e8,
     type: 2}
-  crystalCh: 0.1
-  metalCh: 0.25
+  crystalCh: 0.15
+  metalCh: 0.35
   rockCh: 0.15
   m_scale: 2
   m_velocity: 200
