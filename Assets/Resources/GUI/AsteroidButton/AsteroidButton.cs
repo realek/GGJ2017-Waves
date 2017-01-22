@@ -8,6 +8,7 @@ public class AsteroidButton : MonoBehaviour
     public Player player;
     public Asteroid asteroid;
     public Image timerImage;
+    public Image selectedImage;
 
     [SerializeField]
     private float fireRate;
@@ -54,6 +55,11 @@ public class AsteroidButton : MonoBehaviour
 
     public void SelectButton ()
     {
+        if (player.selectedAsteroidButton!=null)
+        {
+            player.selectedAsteroidButton.selectedImage.gameObject.SetActive(false);
+        }
+
         if (player.selectedAsteroidButton == this)
         {
             player.selectedAsteroidButton = null;
@@ -61,6 +67,7 @@ public class AsteroidButton : MonoBehaviour
         else
         {
             player.selectedAsteroidButton = this;
+            selectedImage.gameObject.SetActive(true);
         }
     }
 }

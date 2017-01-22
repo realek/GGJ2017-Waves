@@ -6,10 +6,19 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Afterburners
+    100004: Cube
     400000: //RootNode
+    400002: Afterburners
+    400004: Cube
     2300000: //RootNode
+    2300002: Afterburners
+    2300004: Cube
     3300000: //RootNode
+    3300002: Afterburners
+    3300004: Cube
     4300000: Cube
+    4300002: Afterburners
     7400000: Default Take
     9500000: //RootNode
   materials:
