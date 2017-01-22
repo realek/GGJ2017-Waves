@@ -278,6 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224713031808135942}
   - component: {fileID: 114838241120183450}
+  - component: {fileID: 114008159135745544}
   m_Layer: 0
   m_Name: Slider_Y
   m_TagString: Untagged
@@ -309,6 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224701971258220894}
   - component: {fileID: 114245367418989840}
+  - component: {fileID: 114208492448075604}
   m_Layer: 0
   m_Name: Slider_Z
   m_TagString: Untagged
@@ -626,6 +628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224081057764597616}
   - component: {fileID: 114884844712586192}
+  - component: {fileID: 114025435922166204}
   m_Layer: 0
   m_Name: Slider_X
   m_TagString: Untagged
@@ -1247,6 +1250,66 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114008159135745544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240633468497764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: ReleaseAsteroidButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &114025435922166204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523164151240846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: ReleaseAsteroidButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!114 &114025787837989118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1301,7 +1364,7 @@ MonoBehaviour:
   asteroid: {fileID: 114262312042547408, guid: eeef6d97d899abc4cbd3f219d4d9a816, type: 2}
   timerImage: {fileID: 114506085155056806}
   selectedImage: {fileID: 114501049003176848}
-  unlockThreshold: 0.75
+  unlockThreshold: 0.35
   cost: 125
   fireRate: 1.5
   m_timeUntilFire: 0
@@ -1665,7 +1728,7 @@ MonoBehaviour:
   asteroid: {fileID: 114262312042547408, guid: 31f8fd0076518cf44ac01f1801d197d5, type: 2}
   timerImage: {fileID: 114173015836254768}
   selectedImage: {fileID: 114144141302230274}
-  unlockThreshold: 0.5
+  unlockThreshold: 0.25
   cost: 65
   fireRate: 1
   m_timeUntilFire: 0
@@ -1696,6 +1759,36 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114208492448075604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252735587774324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: ReleaseAsteroidButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!114 &114213408496924676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1951,7 +2044,7 @@ MonoBehaviour:
   asteroid: {fileID: 114262312042547408, guid: 75f93eef0d98090469d86aaec08e2cd2, type: 2}
   timerImage: {fileID: 114025787837989118}
   selectedImage: {fileID: 114968322971166388}
-  unlockThreshold: 0.25
+  unlockThreshold: 0.1
   cost: 25
   fireRate: 0.5
   m_timeUntilFire: 0
