@@ -72,7 +72,7 @@ public class AsteroidButton : MonoBehaviour
             btn.interactable = false;
         }
 
-        if (m_timeUntilFire>0)
+        if (m_timeUntilFire > 0)
         {
             m_timeUntilFire -= Time.deltaTime;
         }

@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
 
                 if (PointInsideSphere(m_tractored[i].transform.position, m_ship.transform.position, 1.5f))
                 {
-                    if (currentScorePercentage >= 0)
+                    if (currentScorePercentage > 0)
                     {
                         AddScore(m_tractored[i].ScoreValue);
                     }
