@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -360,8 +360,8 @@ Camera:
   m_GameObject: {fileID: 436952634}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.07785467, g: 0.33969355, b: 0.58823526, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -655,7 +655,7 @@ Prefab:
     - target: {fileID: 224996020685695032, guid: 085ea2e254752a24db52f2b4d99c3964,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 59.329987
+      value: 42.809998
       objectReference: {fileID: 0}
     - target: {fileID: 224510260686565502, guid: 085ea2e254752a24db52f2b4d99c3964,
         type: 2}
@@ -745,17 +745,17 @@ Prefab:
     - target: {fileID: 224049641151379490, guid: 085ea2e254752a24db52f2b4d99c3964,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 15.149212
+      value: 6.616482
       objectReference: {fileID: 0}
     - target: {fileID: 224127636434818044, guid: 085ea2e254752a24db52f2b4d99c3964,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 15.149212
+      value: 6.6164827
       objectReference: {fileID: 0}
     - target: {fileID: 224934469155551510, guid: 085ea2e254752a24db52f2b4d99c3964,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 15.149212
+      value: 6.616482
       objectReference: {fileID: 0}
     - target: {fileID: 224996020685695032, guid: 085ea2e254752a24db52f2b4d99c3964,
         type: 2}
