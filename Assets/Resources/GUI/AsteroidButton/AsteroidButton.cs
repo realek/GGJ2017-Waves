@@ -33,11 +33,11 @@ public class AsteroidButton : MonoBehaviour
     {
         get
         {
-            if (m_timeUntilFire < 0)
+            if (m_timeUntilFire >= 0 && !GetComponent<Button>().interactable)
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
     }
 
@@ -48,6 +48,8 @@ public class AsteroidButton : MonoBehaviour
     {
         transform.GetChild(0).GetComponent<Text>().text = "Cost: " + cost + "\r\n" + asteroid.rockCh * 100 + "/" + asteroid.metalCh * 100 + "/" + asteroid.crystalCh * 100 + "%";
         Button btn = GetComponent<Button>();
+
+
 
         if (unlockThreshold <= player.currentScorePercentage)
         {
@@ -64,7 +66,10 @@ public class AsteroidButton : MonoBehaviour
             }
         }
 
-
+        if (player.currentScorePercentage <= 0 || player.currentScorePercentage >= 1)
+        {
+            btn.interactable = false;
+        }
 
         if (!canFire)
         {

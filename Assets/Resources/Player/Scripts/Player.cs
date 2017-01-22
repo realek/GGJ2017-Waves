@@ -18,8 +18,12 @@ public class Player : MonoBehaviour
     private Transform m_navplane;
     [SerializeField]
     private float m_asteroidHeightSpawn = 40;
-    private float m_score;
+
     public float tractorRadius = 2;
+
+    [SerializeField]
+    private float m_score;
+
     public float score
     {
         get
@@ -46,8 +50,17 @@ public class Player : MonoBehaviour
         m_shipAgent = m_ship.GetComponent<NavMeshAgent>();
         m_tractored = new List<GridResource>();
     }
+
     private void Update ()
     {
+        if (currentScorePercentage >= 1 || currentScorePercentage <= 0)
+        {
+            if (selectedAsteroidButton != null)
+            {
+                selectedAsteroidButton.SelectButton();
+            }
+            selectedAsteroidButton = null;
+        }
         if (scoreSlider)
         {
             scoreSlider.value = currentScorePercentage;
