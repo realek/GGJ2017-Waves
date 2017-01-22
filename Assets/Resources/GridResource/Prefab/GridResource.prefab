@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114204692003843592}
   - component: {fileID: 54107104264990294}
   - component: {fileID: 65838061953593484}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GridResource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4093656956000666}
   - component: {fileID: 212860607901640918}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -29,6 +29,7 @@ public class GridResource : MonoBehaviour {
     private Sprite m_crystal;
     [SerializeField]
     private SpriteRenderer childSprite;
+    public bool supressed = false;
 	// Use this for initialization
 
 	void Start ()
@@ -49,18 +50,14 @@ public class GridResource : MonoBehaviour {
                 childSprite.sprite = m_crystal;
                 break;
         }
-        StartCoroutine(FloatUP()); // I LIKE TO ABUSE // Our lord and savior
 	}
 
-    IEnumerator FloatUP()
+    private void Update()
     {
-        while (true)
-        {
-            if (transform.parent.position.y + m_distanceFromGridNeutral > transform.position.y)
-                transform.position = new Vector3(transform.position.x, transform.position.y + Time.fixedDeltaTime * speed, transform.position.z);
+        if(childSprite!=null)
             childSprite.transform.LookAt(Camera.main.transform);
-            yield return m_w8;
-        }
+        if (!supressed && transform.parent.position.y + m_distanceFromGridNeutral > transform.position.y)
+            transform.position = new Vector3(transform.position.x, transform.position.y + Time.fixedDeltaTime * speed, transform.position.z);
 
     }
 }

@@ -5,7 +5,9 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
+    public LayerMask tractorLayer;
     public AsteroidButton selectedAsteroidButton;
+    private List<GridResource> m_tractored;
     [SerializeField]
     private GameObject m_ship;
     private NavMeshAgent m_shipAgent;
@@ -15,12 +17,23 @@ public class Player : MonoBehaviour
     private Transform m_navplane;
     [SerializeField]
     private float m_asteroidHeightSpawn = 40;
-    private int score;
+    private float m_score;
+    public float score { get { return m_score; } }
     [SerializeField]
-    private int maxLevelScore;
+    private float maxLevelScore;
+
+    public float currentPercentage
+    {
+        get
+        {
+            return m_score / maxLevelScore;
+        }
+    }
+
     private void Awake ()
     {
         m_shipAgent = m_ship.GetComponent<NavMeshAgent>();
+        m_tractored = new List<GridResource>();
     }
     private void Update ()
     {
@@ -50,6 +63,13 @@ public class Player : MonoBehaviour
 
             }
         }
+
+        ProcessTractored();
+    }
+
+    private void FixedUpdate()
+    {
+        TractorBeam();
     }
 
     public Vector3 RandomAsteroidPosition ()
@@ -70,6 +90,65 @@ public class Player : MonoBehaviour
 
     public void AddScore(int value)
     {
-        score += value;
+        m_score += value;
     }
+
+    private void TractorBeam()
+    {
+        RaycastHit hit;
+        Debug.DrawLine(m_ship.transform.position, m_ship.transform.position + (Vector3.down * 30), Color.red);
+        if (Physics.SphereCast(m_ship.transform.position,1,Vector3.down, out hit,30,tractorLayer))
+        {
+            
+            if (m_tractored.Count > 0)
+            {
+                bool found = false;
+                for (int i = 0; i < m_tractored.Count; i++)
+                {
+                    if (m_tractored[i].gameObject == hit.collider.gameObject)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    m_tractored.Add(hit.collider.gameObject.AddComponent<GridResource>());
+            }
+            else
+                m_tractored.Add(hit.collider.gameObject.AddComponent<GridResource>());
+        }
+    }
+
+    private void ProcessTractored()
+    {
+        if(m_tractored.Count>0)
+            for (int i = 0; i < m_tractored.Count; i++)
+            {
+
+                if (PointInsideSphere(m_tractored[i].transform.position, m_ship.transform.position, 0.5f))
+                {
+                    m_score += m_tractored[i].ScoreValue;
+                    m_tractored[i].supressed = true;
+                    Destroy(m_tractored[i].gameObject);
+                    m_tractored.Remove(m_tractored[i]);
+                }
+                else
+                {
+                    m_tractored[i].transform.position = Vector3.Lerp(m_tractored[i].transform.position,
+                        m_ship.transform.position, Time.deltaTime);
+                }
+            }
+    }
+
+
+    private bool PointInsideSphere(Vector3 p, Vector3 sc, float radius)
+    {
+        float d = (p - sc).sqrMagnitude;
+        if (d < radius * radius)
+        {
+            return true;
+        }
+        return false;
+    }
+
 }
