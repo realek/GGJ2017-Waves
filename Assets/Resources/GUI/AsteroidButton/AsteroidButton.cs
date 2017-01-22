@@ -10,6 +10,11 @@ public class AsteroidButton : MonoBehaviour
     public Image timerImage;
     public Image selectedImage;
 
+    [Range(0, 1)]
+    public float unlockThreshold;
+
+    public float cost;
+
     [SerializeField]
     private float fireRate;
 
@@ -41,6 +46,26 @@ public class AsteroidButton : MonoBehaviour
 
     void Update ()
     {
+        transform.GetChild(0).GetComponent<Text>().text = "Cost: " + cost + "\r\n" + asteroid.rockCh * 100 + "/" + asteroid.metalCh * 100 + "/" + asteroid.crystalCh * 100 + "%";
+        Button btn = GetComponent<Button>();
+
+        if (unlockThreshold <= player.currentScorePercentage)
+        {
+            if (!btn.interactable)
+            {
+                btn.interactable = true;
+            }
+        }
+        else
+        {
+            if (btn.interactable)
+            {
+                btn.interactable = false;
+            }
+        }
+
+
+
         if (!canFire)
         {
             m_timeUntilFire -= Time.deltaTime;
@@ -55,7 +80,7 @@ public class AsteroidButton : MonoBehaviour
 
     public void SelectButton ()
     {
-        if (player.selectedAsteroidButton!=null)
+        if (player.selectedAsteroidButton != null)
         {
             player.selectedAsteroidButton.selectedImage.gameObject.SetActive(false);
         }

@@ -8,11 +8,11 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private GameObject resourcePrefab;
     [SerializeField]
-    private float crystalCh;
+    public float crystalCh;
     [SerializeField]
-    private float metalCh;
+    public float metalCh;
     [SerializeField]
-    private float rockCh;
+    public float rockCh;
     private bool collided = false;
     [SerializeField]
     private float m_scale;

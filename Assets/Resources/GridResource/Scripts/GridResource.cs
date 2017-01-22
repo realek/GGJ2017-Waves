@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum GridResources
 {
-    None,
+    None = 0,
     Rock = 5,
     Metal = 10,
     Crystal = 20
@@ -14,6 +14,7 @@ public class GridResource : MonoBehaviour {
 
     [HideInInspector]
     public GridResources type;
+    [SerializeField]
     private int m_scoreValue;
     public int ScoreValue { get { return m_scoreValue; } }
     WaitForSeconds m_w8;

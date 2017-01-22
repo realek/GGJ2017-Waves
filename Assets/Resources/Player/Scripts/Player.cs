@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class Player : MonoBehaviour
@@ -18,11 +19,21 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float m_asteroidHeightSpawn = 40;
     private float m_score;
-    public float score { get { return m_score; } }
+    public float tractorRadius = 2;
+    public float score
+    {
+        get
+        {
+            return m_score;
+        }
+    }
     [SerializeField]
     private float maxLevelScore;
 
-    public float currentPercentage
+    public Slider scoreSlider;
+
+
+    public float currentScorePercentage
     {
         get
         {
@@ -37,6 +48,10 @@ public class Player : MonoBehaviour
     }
     private void Update ()
     {
+        if (scoreSlider)
+        {
+            scoreSlider.value = currentScorePercentage;
+        }
         if (Input.GetKey(KeyCode.Mouse1))
         {
             RaycastHit hit;
@@ -54,20 +69,23 @@ public class Player : MonoBehaviour
             {
                 if (selectedAsteroidButton.canFire && targetGrid.SelectedUnit != null)
                 {
-                    selectedAsteroidButton.Fire();
-                    Rigidbody meteor = Instantiate(selectedAsteroidButton.asteroid.gameObject).GetComponent<Rigidbody>();
-                    meteor.transform.position = RandomAsteroidPosition();
-                    var dir = targetGrid.SelectedUnit.transform.position - meteor.transform.position;
-                    meteor.AddForce(dir.normalized * selectedAsteroidButton.asteroid.velocity, ForceMode.VelocityChange);
+                    if (score - selectedAsteroidButton.cost >= 0)
+                    {
+                        AddScore(-selectedAsteroidButton.cost);
+                        selectedAsteroidButton.Fire();
+                        Rigidbody meteor = Instantiate(selectedAsteroidButton.asteroid.gameObject).GetComponent<Rigidbody>();
+                        meteor.transform.position = RandomAsteroidPosition();
+                        var dir = targetGrid.SelectedUnit.transform.position - meteor.transform.position;
+                        meteor.AddForce(dir.normalized * selectedAsteroidButton.asteroid.velocity, ForceMode.VelocityChange);
+                    }
                 }
-
             }
         }
 
         ProcessTractored();
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate ()
     {
         TractorBeam();
     }
@@ -88,18 +106,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AddScore(int value)
+    public void AddScore (float value)
     {
         m_score += value;
     }
 
-    private void TractorBeam()
+    private void TractorBeam ()
     {
         RaycastHit hit;
         Debug.DrawLine(m_ship.transform.position, m_ship.transform.position + (Vector3.down * 30), Color.red);
-        if (Physics.SphereCast(m_ship.transform.position,1,Vector3.down, out hit,30,tractorLayer))
+        if (Physics.SphereCast(m_ship.transform.position, tractorRadius, Vector3.down, out hit, 30, tractorLayer))
         {
-            
             if (m_tractored.Count > 0)
             {
                 bool found = false;
@@ -112,22 +129,22 @@ public class Player : MonoBehaviour
                     }
                 }
                 if (!found)
-                    m_tractored.Add(hit.collider.gameObject.AddComponent<GridResource>());
+                    m_tractored.Add(hit.collider.gameObject.GetComponent<GridResource>());
             }
             else
-                m_tractored.Add(hit.collider.gameObject.AddComponent<GridResource>());
+                m_tractored.Add(hit.collider.gameObject.GetComponent<GridResource>());
         }
     }
 
-    private void ProcessTractored()
+    private void ProcessTractored ()
     {
-        if(m_tractored.Count>0)
+        if (m_tractored.Count > 0)
             for (int i = 0; i < m_tractored.Count; i++)
             {
 
-                if (PointInsideSphere(m_tractored[i].transform.position, m_ship.transform.position, 0.5f))
+                if (PointInsideSphere(m_tractored[i].transform.position, m_ship.transform.position, 1.5f))
                 {
-                    m_score += m_tractored[i].ScoreValue;
+                    AddScore(m_tractored[i].ScoreValue);
                     m_tractored[i].supressed = true;
                     Destroy(m_tractored[i].gameObject);
                     m_tractored.Remove(m_tractored[i]);
@@ -135,13 +152,13 @@ public class Player : MonoBehaviour
                 else
                 {
                     m_tractored[i].transform.position = Vector3.Lerp(m_tractored[i].transform.position,
-                        m_ship.transform.position, Time.deltaTime);
+                        m_ship.transform.position, Time.deltaTime * 2);
                 }
             }
     }
 
 
-    private bool PointInsideSphere(Vector3 p, Vector3 sc, float radius)
+    private bool PointInsideSphere (Vector3 p, Vector3 sc, float radius)
     {
         float d = (p - sc).sqrMagnitude;
         if (d < radius * radius)
