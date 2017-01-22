@@ -51,7 +51,7 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-    public List<GameObject> particles = new List<GameObject>();
+    public List<GameObject> cParticles = new List<GameObject>();
 
     private Rigidbody rb;
 
@@ -62,7 +62,13 @@ public class Asteroid : MonoBehaviour
 
     private void OnCollisionEnter (Collision collision)
     {
-        //Destroy(gameObject);
+        Destroy(gameObject,0.1f);
+        foreach(GameObject g in cParticles)
+        {
+            var sys = Instantiate(g).GetComponent<ParticleSystem>();
+            sys.transform.position = transform.position;
+
+        }
 
     }
 }

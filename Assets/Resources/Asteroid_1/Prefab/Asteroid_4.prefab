@@ -125,4 +125,5 @@ MonoBehaviour:
   m_scale: 1
   m_velocity: 120
   m_density: 4
-  particles: []
+  cParticles:
+  - {fileID: 1717284850573074, guid: 7245ec5cbc90b214bba0879ccba7fdc7, type: 2}
