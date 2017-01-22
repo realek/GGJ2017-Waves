@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     private float maxLevelScore;
 
     public Slider scoreSlider;
+    public Text scoreText;
 
 
     public float currentScorePercentage
@@ -86,6 +87,10 @@ public class Player : MonoBehaviour
         if (scoreSlider)
         {
             scoreSlider.value = currentScorePercentage;
+        }
+        if (scoreText)
+        {
+            scoreText.text = "Resources: " + m_score + "/" + maxLevelScore;
         }
         if (Input.GetKey(KeyCode.Mouse1))
         {
