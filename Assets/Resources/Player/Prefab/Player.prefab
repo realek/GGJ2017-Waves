@@ -59,4 +59,6 @@ MonoBehaviour:
   targetGrid: {fileID: 0}
   m_navplane: {fileID: 0}
   m_asteroidHeightSpawn: 40
-  maxLevelScore: 150
+  tractorRadius: 5
+  maxLevelScore: 1000
+  scoreSlider: {fileID: 0}

@@ -67,6 +67,7 @@ public class Asteroid : MonoBehaviour
     private void Awake ()
     {
         rb = GetComponent<Rigidbody>();
+        transform.localScale = new Vector3(m_scale, m_scale, m_scale);
     }
 
     private void OnCollisionEnter (Collision collision)
@@ -82,35 +83,23 @@ public class Asteroid : MonoBehaviour
                 sys.transform.position = transform.position;
             }
 
-            float ch = Random.value;
-            bool rock, metal, crystal;
-            rock = metal = crystal = false;
+            int numberOfOres = Random.Range(1, 4);
+            var res = new GridResource[numberOfOres];
 
-            if (ch <= crystalCh)
-                crystal = true;
-            else if (ch > crystalCh && ch <= crystalCh + metalCh)
-                metal = true;
-            else if (ch > crystalCh + metalCh && ch <= crystalCh + metalCh + rockCh)
-                rock = true;
 
-            if (rock || metal || crystal)
+            for (int i = 0; i < res.Length; i++)
             {
-                int size = Random.Range(1, 4);
-                var res = new GridResource[size];
+                float ch = Random.value;
+                res[i] = Instantiate(resourcePrefab).GetComponent<GridResource>();
+                if (ch <= crystalCh)
+                    res[i].type = GridResources.Crystal;
+                else if (ch > crystalCh && ch <= crystalCh + metalCh)
+                    res[i].type = GridResources.Metal;
+                else if (ch > crystalCh + metalCh && ch <= crystalCh + metalCh + rockCh)
+                    res[i].type = GridResources.Rock;
 
-                for(int i = 0; i<res.Length;i++)
-                {
-                    res[i] = Instantiate(resourcePrefab).GetComponent<GridResource>();
-                    if (rock)
-                        res[i].type = GridResources.Rock;
-                    else if (metal)
-                        res[i].type = GridResources.Metal;
-                    else if (crystal)
-                        res[i].type = GridResources.Crystal;
-                    res[i].transform.position = collision.contacts[Random.Range(0,collision.contacts.Length)].point + (Random.insideUnitSphere * 2);
-                    res[i].transform.SetParent(Grid.currentInstance.transform);
-                }
-
+                res[i].transform.position = collision.contacts[Random.Range(0, collision.contacts.Length)].point + (Random.insideUnitSphere * 2);
+                res[i].transform.SetParent(Grid.currentInstance.transform);
             }
 
                 collided = true;

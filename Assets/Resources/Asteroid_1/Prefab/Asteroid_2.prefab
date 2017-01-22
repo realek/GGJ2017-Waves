@@ -127,7 +127,7 @@ MonoBehaviour:
   crystalCh: 0.05
   metalCh: 0.15
   rockCh: 0.3
-  m_scale: 1
+  m_scale: 1.5
   m_velocity: 120
   m_density: 4
   cParticles:

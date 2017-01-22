@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     {
         m_shipAgent = m_ship.GetComponent<NavMeshAgent>();
         m_tractored = new List<GridResource>();
+        m_score = 0.05f * maxLevelScore;
     }
     private void Update ()
     {
