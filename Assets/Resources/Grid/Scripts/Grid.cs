@@ -6,6 +6,7 @@ public class Grid : MonoBehaviour
 {
     public static Grid currentInstance;
     public GameObject gridUnitPrefab;
+    public Vector3 canvasGridOffset;
     [SerializeField]
     private int m_numberOfUnits = 1;
     public int numberOfUnits
@@ -89,6 +90,7 @@ public class Grid : MonoBehaviour
         }
 
         Camera.main.transform.LookAt(gridMiddlePoint);
+        Camera.main.transform.rotation = Quaternion.Euler(Camera.main.transform.rotation.eulerAngles+canvasGridOffset);
         
         
     }
