@@ -16,26 +16,18 @@ public class ResourceSpawner : MonoBehaviour {
     private float launchforce;
 
 
-    public enum Resources
-    {
-        None,
-        Rock = 5,
-        Metal = 10,
-        Crystal = 20
-    }
-
-    public void SpawnResource(Resources res,Vector3 position, Vector3 direction)
+    public void SpawnResource(GridResources res,Vector3 position, Vector3 direction)
     {
         GameObject resource = null;
         switch (res)
         {
-            case Resources.Rock:
+            case GridResources.Rock:
                 resource = Instantiate(res_rocksPrefab);
                     break;
-            case Resources.Metal:
+            case GridResources.Metal:
                 resource = Instantiate(res_metalsPrefab);
                     break;
-            case Resources.Crystal:
+            case GridResources.Crystal:
                 resource = Instantiate(res_crystalsPrefab);
                 break;
         }

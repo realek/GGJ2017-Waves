@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private Transform m_navplane;
     [SerializeField]
     private float m_asteroidHeightSpawn = 40;
-
+    private int score;
     private void Awake ()
     {
         m_shipAgent = m_ship.GetComponent<NavMeshAgent>();
@@ -53,5 +53,10 @@ public class Player : MonoBehaviour
     public Vector3 RandomAsteroidPosition ()
     {
         return new Vector3(targetGrid.numberOfUnits * Random.insideUnitCircle.x, m_asteroidHeightSpawn, targetGrid.numberOfUnits * Random.insideUnitCircle.y);
+    }
+
+    public void AddScore(int value)
+    {
+        score += value;
     }
 }
