@@ -37,6 +37,18 @@ public class GridResource : MonoBehaviour {
         m_scoreValue = (int)type;
         if (transform.parent == null)
             throw new MissingReferenceException("No parent please assign parent.");
+        switch(type)
+        {
+            case GridResources.Rock:
+                childSprite.sprite = m_rock;
+                break;
+            case GridResources.Metal:
+                childSprite.sprite = m_metal;
+                break;
+            case GridResources.Crystal:
+                childSprite.sprite = m_crystal;
+                break;
+        }
         StartCoroutine(FloatUP()); // I LIKE TO ABUSE // Our lord and savior
 	}
 

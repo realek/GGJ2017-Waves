@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4474134108969904}
   - component: {fileID: 114204692003843592}
+  - component: {fileID: 54107104264990294}
+  - component: {fileID: 65838061953593484}
   m_Layer: 0
   m_Name: GridResource
   m_TagString: Untagged
@@ -63,13 +65,40 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1089722489247476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.4493675, y: 2.315567, z: 23.775108}
+  m_LocalPosition: {x: 349.59467, y: 178.93939, z: 461.65503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4093656956000666}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54107104264990294
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1089722489247476}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65838061953593484
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1089722489247476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114204692003843592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,8 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  m_distanceFromGridNeutral: 3
-  speed: 2
+  m_distanceFromGridNeutral: 6
+  speed: 3
   m_rock: {fileID: 21300000, guid: 74ba5783dec174f4dbfc8de862fe4eae, type: 3}
   m_metal: {fileID: 21300000, guid: 22256a279ce01ea4fad437e07f9c2ddc, type: 3}
   m_crystal: {fileID: 21300000, guid: 8c3a49d5494db8244b8a224a090beec9, type: 3}
