@@ -48,6 +48,7 @@ public class AsteroidButton : MonoBehaviour
     {
         transform.GetChild(0).GetComponent<Text>().text = "Cost: " + cost + "\r\n" + asteroid.rockCh * 100 + "/" + asteroid.metalCh * 100 + "/" + asteroid.crystalCh * 100 + "%";
         Button btn = GetComponent<Button>();
+        timerImage.fillAmount = fireRatePercentage;
 
 
 
@@ -71,11 +72,10 @@ public class AsteroidButton : MonoBehaviour
             btn.interactable = false;
         }
 
-        if (!canFire)
+        if (m_timeUntilFire>0)
         {
             m_timeUntilFire -= Time.deltaTime;
         }
-        timerImage.fillAmount = fireRatePercentage;
     }
 
     public void Fire ()

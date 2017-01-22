@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
 
     public float tractorRadius = 2;
 
+    public GameObject win;
+    public GameObject lose;
+
     [SerializeField]
     private float m_score;
 
@@ -61,6 +64,24 @@ public class Player : MonoBehaviour
                 selectedAsteroidButton.SelectButton();
             }
             selectedAsteroidButton = null;
+
+            if (currentScorePercentage >= 1)
+            {
+                if (!win.gameObject.activeSelf)
+                {
+                    win.gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                if (currentScorePercentage <= 0)
+                {
+                    if (!lose.gameObject.activeSelf)
+                    {
+                        lose.gameObject.SetActive(true);
+                    }
+                }
+            }
         }
         if (scoreSlider)
         {
@@ -158,7 +179,10 @@ public class Player : MonoBehaviour
 
                 if (PointInsideSphere(m_tractored[i].transform.position, m_ship.transform.position, 1.5f))
                 {
-                    AddScore(m_tractored[i].ScoreValue);
+                    if (currentScorePercentage >= 0)
+                    {
+                        AddScore(m_tractored[i].ScoreValue);
+                    }
                     m_tractored[i].supressed = true;
                     Destroy(m_tractored[i].gameObject);
                     m_tractored.Remove(m_tractored[i]);

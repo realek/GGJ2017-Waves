@@ -17,7 +17,6 @@ public class GridResource : MonoBehaviour {
     [SerializeField]
     private int m_scoreValue;
     public int ScoreValue { get { return m_scoreValue; } }
-    WaitForSeconds m_w8;
     [SerializeField]
     private float m_distanceFromGridNeutral;
     [SerializeField]
@@ -35,7 +34,6 @@ public class GridResource : MonoBehaviour {
 
 	void Start ()
     {
-        m_w8 = new WaitForSeconds(Time.fixedDeltaTime);
         m_scoreValue = (int)type;
         if (transform.parent == null)
             throw new MissingReferenceException("No parent please assign parent.");
