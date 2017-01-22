@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,7 +39,7 @@ public class ResourceSpawner : MonoBehaviour {
                 resource = Instantiate(res_crystalsPrefab);
                 break;
         }
-        rb.transform.position = position;
+        resource.transform.position = position;
         //rb.AddForce(direction * launchforce, ForceMode.Impulse);
 
     }
