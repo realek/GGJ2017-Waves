@@ -124,18 +124,31 @@ public class Player : MonoBehaviour
         if(m_tractored.Count>0)
             for (int i = 0; i < m_tractored.Count; i++)
             {
-                if (m_tractored[i].transform.position == transform.position)
+
+                if (PointInsideSphere(m_tractored[i].transform.position, m_ship.transform.position, 0.5f))
                 {
                     m_score += m_tractored[i].ScoreValue;
                     m_tractored[i].supressed = true;
-                    Destroy(m_tractored[i]);
+                    Destroy(m_tractored[i].gameObject);
                     m_tractored.Remove(m_tractored[i]);
                 }
                 else
                 {
-                    m_tractored[i].transform.position = Vector3.MoveTowards(m_tractored[i].transform.position,
-                        transform.position, Time.deltaTime);
+                    m_tractored[i].transform.position = Vector3.Lerp(m_tractored[i].transform.position,
+                        m_ship.transform.position, Time.deltaTime);
                 }
             }
     }
+
+
+    private bool PointInsideSphere(Vector3 p, Vector3 sc, float radius)
+    {
+        float d = (p - sc).sqrMagnitude;
+        if (d < radius * radius)
+        {
+            return true;
+        }
+        return false;
+    }
+
 }
