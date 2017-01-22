@@ -124,11 +124,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourcePrefab: {fileID: 1089722489247476, guid: 7f8e43104dcbb4d4182478a0689551e8,
     type: 2}
-  crystalCh: 0.05
-  metalCh: 0.15
-  rockCh: 0.3
+  crystalCh: 0.2
+  metalCh: 0.35
+  rockCh: 0.1
   m_scale: 2.5
-  m_velocity: 120
-  m_density: 4
+  m_velocity: 250
+  m_density: 10
   cParticles:
   - {fileID: 1717284850573074, guid: 7245ec5cbc90b214bba0879ccba7fdc7, type: 2}
