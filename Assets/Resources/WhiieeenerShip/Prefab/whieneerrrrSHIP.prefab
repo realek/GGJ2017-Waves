@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4403708946473860}
   - component: {fileID: 108984898714672324}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4205590150585962}
   - component: {fileID: 198759718040883484}
   - component: {fileID: 199315291023757218}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4146747697283682}
   - component: {fileID: 220322554059614782}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light Probe Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4155232660043262}
   - component: {fileID: 33090263791913492}
   - component: {fileID: 23497633483729978}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4375479812266882}
   - component: {fileID: 215604876981612082}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Reflection Probe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4957340576132528}
   - component: {fileID: 195447230130621546}
-  m_Layer: 0
+  - component: {fileID: 65431392185551388}
+  m_Layer: 10
   m_Name: whieneerrrrSHIP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,6 +231,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829517070828752}
   m_Mesh: {fileID: 4300000, guid: 81c2f70023505d5469e7653a39f76ca0, type: 3}
+--- !u!65 &65431392185551388
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1891296027888268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108984898714672324
 Light:
   m_ObjectHideFlags: 1

@@ -61,7 +61,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1717284850573074}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -506,7 +506,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     randomizeRotationDirection: 0
-    maxNumParticles: 2000
+    maxNumParticles: 500
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -575,7 +575,7 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 3
     rateOverTime:
-      scalar: 500
+      scalar: 250
       maxCurve:
         serializedVersion: 2
         m_Curve:
