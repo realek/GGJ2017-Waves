@@ -11,7 +11,10 @@ public class ResourceSpawner : MonoBehaviour {
     [SerializeField]
     private GameObject res_crystalsPrefab;
     [SerializeField]
+    private Transform m_navPlane;
+    [SerializeField]
     private float launchforce;
+
 
     public enum Resources
     {
@@ -36,10 +39,8 @@ public class ResourceSpawner : MonoBehaviour {
                 resource = Instantiate(res_crystalsPrefab);
                 break;
         }
-
-        Rigidbody rb = resource.GetComponent<Rigidbody>();
         rb.transform.position = position;
-        rb.AddForce(direction * launchforce, ForceMode.Impulse);
+        //rb.AddForce(direction * launchforce, ForceMode.Impulse);
 
     }
 }
