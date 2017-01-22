@@ -51,6 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c9d82a7b2405542b05af09a371b5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tractorLayer:
+    serializedVersion: 2
+    m_Bits: 512
   selectedAsteroidButton: {fileID: 0}
   m_ship: {fileID: 0}
   targetGrid: {fileID: 0}
