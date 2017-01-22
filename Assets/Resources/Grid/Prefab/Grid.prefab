@@ -51,11 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c655fb88d7a546143a5a3739d2b78355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridResourcePrefab: {fileID: 1089722489247476, guid: 7f8e43104dcbb4d4182478a0689551e8,
-    type: 2}
-  m_rockSpawnTH: 3
-  m_metalSpawnTH: 6
-  m_crystalSpawnTH: 9
   gridUnitPrefab: {fileID: 1825810450173446, guid: 0a4cf9888b9943742966cc5cb1218db1,
     type: 2}
   m_numberOfUnits: 44
