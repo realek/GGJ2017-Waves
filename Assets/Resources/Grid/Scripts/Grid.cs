@@ -7,6 +7,14 @@ public class Grid : MonoBehaviour
     public GameObject gridUnitPrefab;
     [SerializeField]
     private int m_numberOfUnits = 1;
+    public int numberOfUnits
+    {
+        get
+        {
+            return m_numberOfUnits;
+        }
+    }
+
     [SerializeField]
     private int m_interpolationSize = 1;
     [SerializeField]

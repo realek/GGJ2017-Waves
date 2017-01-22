@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private Grid targetGrid;
     [SerializeField]
     private Transform m_navplane;
+    [SerializeField]
+    private float m_asteroidHeightSpawn = 40;
 
     private void Awake ()
     {
@@ -39,14 +41,17 @@ public class Player : MonoBehaviour
                 {
                     selectedAsteroidButton.Fire();
                     Rigidbody meteor = Instantiate(selectedAsteroidButton.asteroid.gameObject).GetComponent<Rigidbody>();
-                    meteor.transform.position = gameObject.transform.position;
+                    meteor.transform.position = RandomAsteroidPosition();
                     var dir = targetGrid.SelectedUnit.transform.position - meteor.transform.position;
                     meteor.AddForce(dir.normalized * selectedAsteroidButton.asteroid.velocity, ForceMode.VelocityChange);
                 }
 
             }
         }
+    }
 
-
+    public Vector3 RandomAsteroidPosition ()
+    {
+        return new Vector3(targetGrid.numberOfUnits * Random.insideUnitCircle.x, m_asteroidHeightSpawn, targetGrid.numberOfUnits * Random.insideUnitCircle.y);
     }
 }
