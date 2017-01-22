@@ -17,14 +17,7 @@ public class GridUnit : MonoBehaviour
         }
     }
 
-    private Rigidbody m_rb;
-
     public Grid parent;
-    
-    void Awake ()
-    {
-        m_rb = GetComponent<Rigidbody>();
-    }
 
     public void AddAmplitude (float amount)
     {

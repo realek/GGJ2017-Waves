@@ -6,6 +6,15 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     [SerializeField]
+    private GameObject resourcePrefab;
+    [SerializeField]
+    private float crystalCh;
+    [SerializeField]
+    private float metalCh;
+    [SerializeField]
+    private float rockCh;
+    private bool collided = false;
+    [SerializeField]
     private float m_scale;
     public float scale
     {
@@ -62,13 +71,45 @@ public class Asteroid : MonoBehaviour
 
     private void OnCollisionEnter (Collision collision)
     {
-        Destroy(gameObject,0.1f);
-        foreach(GameObject g in cParticles)
-        {
-            var sys = Instantiate(g).GetComponent<ParticleSystem>();
-            sys.transform.position = transform.position;
 
+        if(!collided)
+        {
+            Destroy(gameObject, 0.1f);
+
+            foreach (GameObject g in cParticles)
+            {
+                var sys = Instantiate(g).GetComponent<ParticleSystem>();
+                sys.transform.position = transform.position;
+            }
+            collided = true;
         }
+
+
+        /*
+         * bool rock, metal, crystal;
+                rock = metal = crystal = false;
+                if (m_units[i][j].transform.position.y < transform.position.y - m_crystalSpawnTH)
+                    crystal = true;
+                else if (m_units[i][j].transform.position.y < transform.position.y - m_metalSpawnTH)
+                    metal = true;
+                else if (m_units[i][j].transform.position.y < transform.position.y - m_rockSpawnTH)
+                    rock = true;
+
+                if(rock || metal || crystal)
+                {
+                    GridResource res = Instantiate(gridResourcePrefab).GetComponent<GridResource>();
+
+                    if (rock)
+                        res.type = GridResources.Rock;
+                    else if (metal)
+                        res.type = GridResources.Metal;
+                    else if (crystal)
+                        res.type = GridResources.Crystal;
+
+                    res.transform.position = m_units[i][j].transform.position;
+                    res.transform.SetParent(transform);
+                }
+         */
 
     }
 }

@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float m_asteroidHeightSpawn = 40;
     private int score;
+    [SerializeField]
+    private int maxLevelScore;
     private void Awake ()
     {
         m_shipAgent = m_ship.GetComponent<NavMeshAgent>();

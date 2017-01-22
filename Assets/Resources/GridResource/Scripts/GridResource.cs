@@ -12,6 +12,7 @@ public enum GridResources
 
 public class GridResource : MonoBehaviour {
 
+    [HideInInspector]
     public GridResources type;
     private int m_scoreValue;
     public int ScoreValue { get { return m_scoreValue; } }
@@ -26,6 +27,8 @@ public class GridResource : MonoBehaviour {
     private Sprite m_metal;
     [SerializeField]
     private Sprite m_crystal;
+    [SerializeField]
+    private SpriteRenderer childSprite;
 	// Use this for initialization
 
 	void Start ()
@@ -36,15 +39,14 @@ public class GridResource : MonoBehaviour {
             throw new MissingReferenceException("No parent please assign parent.");
         StartCoroutine(FloatUP()); // I LIKE TO ABUSE // Our lord and savior
 	}
-	
+
     IEnumerator FloatUP()
     {
         while (true)
         {
             if (transform.parent.position.y + m_distanceFromGridNeutral > transform.position.y)
                 transform.position = new Vector3(transform.position.x, transform.position.y + Time.fixedDeltaTime * speed, transform.position.z);
-            else
-                yield break;
+            childSprite.transform.LookAt(Camera.main.transform);
             yield return m_w8;
         }
 
