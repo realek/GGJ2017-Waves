@@ -64,6 +64,11 @@ public class AsteroidButton : MonoBehaviour
             if (btn.interactable)
             {
                 btn.interactable = false;
+                if (player.selectedAsteroidButton == this)
+                {
+                    player.selectedAsteroidButton = null;
+                    selectedImage.gameObject.SetActive(false);
+                }
             }
         }
 
