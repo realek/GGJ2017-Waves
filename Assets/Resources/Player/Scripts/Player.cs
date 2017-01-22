@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     public Slider scoreSlider;
     public Text scoreText;
 
+    AudioSource m_source;
 
     public float currentScorePercentage
     {
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
 
     private void Awake ()
     {
+        m_source = GetComponent<AudioSource>();
         m_shipAgent = m_ship.GetComponent<NavMeshAgent>();
         m_tractored = new List<GridResource>();
         m_score = 0.05f * maxLevelScore;
@@ -199,6 +201,7 @@ public class Player : MonoBehaviour
                         AddScore(m_tractored[i].ScoreValue);
                     }
                     m_tractored[i].supressed = true;
+                    m_source.Play();
                     Destroy(m_tractored[i].gameObject);
                     m_tractored.Remove(m_tractored[i]);
                 }
