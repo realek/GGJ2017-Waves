@@ -146,6 +146,16 @@ public class Player : MonoBehaviour
         m_score += value;
     }
 
+    public void ReleaseAsteroidButton()
+    {
+        if(selectedAsteroidButton!=null)
+        {
+            selectedAsteroidButton.selectedImage.gameObject.SetActive(false);
+            selectedAsteroidButton = null;
+        }
+
+    }
+
     private void TractorBeam ()
     {
         RaycastHit hit;

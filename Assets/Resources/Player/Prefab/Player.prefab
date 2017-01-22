@@ -60,5 +60,8 @@ MonoBehaviour:
   m_navplane: {fileID: 0}
   m_asteroidHeightSpawn: 40
   tractorRadius: 5
+  win: {fileID: 0}
+  lose: {fileID: 0}
+  m_score: 0
   maxLevelScore: 1000
   scoreSlider: {fileID: 0}
