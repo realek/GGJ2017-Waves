@@ -15,7 +15,9 @@ public class Player : MonoBehaviour
     private Transform m_navplane;
     [SerializeField]
     private float m_asteroidHeightSpawn = 40;
-
+    private int score;
+    [SerializeField]
+    private int maxLevelScore;
     private void Awake ()
     {
         m_shipAgent = m_ship.GetComponent<NavMeshAgent>();
@@ -64,5 +66,10 @@ public class Player : MonoBehaviour
             Gizmos.DrawLine(pos, pos + Vector3.up * 0.5f);
             Gizmos.color = Color.red;
         }
+    }
+
+    public void AddScore(int value)
+    {
+        score += value;
     }
 }

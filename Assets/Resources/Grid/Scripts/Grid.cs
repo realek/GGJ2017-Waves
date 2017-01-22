@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
+    public static Grid currentInstance;
     public GameObject gridUnitPrefab;
     [SerializeField]
     private int m_numberOfUnits = 1;
@@ -54,6 +55,10 @@ public class Grid : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        if (currentInstance == null)
+            currentInstance = this;
+        else
+            Destroy(gameObject);
         GenerateGrid();
     }
 
@@ -84,11 +89,8 @@ public class Grid : MonoBehaviour
         }
 
         Camera.main.transform.LookAt(gridMiddlePoint);
-    }
-
-    private void FixedUpdate ()
-    {
-
+        
+        
     }
 
     private void DampenUnit (GridUnit unit)
