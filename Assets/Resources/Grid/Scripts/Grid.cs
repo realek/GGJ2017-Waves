@@ -15,6 +15,14 @@ public class Grid : MonoBehaviour
         }
     }
 
+    public Vector3 gridMiddlePoint
+    {
+        get
+        {
+            return new Vector3(transform.position.x + m_numberOfUnits / 2, transform.position.y, transform.position.z + m_numberOfUnits / 2);
+        }
+    }
+
     [SerializeField]
     private int m_interpolationSize = 1;
     [SerializeField]
@@ -75,6 +83,7 @@ public class Grid : MonoBehaviour
             }
         }
 
+        Camera.main.transform.LookAt(gridMiddlePoint);
     }
 
     private void FixedUpdate ()

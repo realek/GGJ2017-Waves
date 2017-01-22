@@ -52,7 +52,18 @@ public class Player : MonoBehaviour
 
     public Vector3 RandomAsteroidPosition ()
     {
-        return new Vector3(targetGrid.numberOfUnits * Random.insideUnitCircle.x, m_asteroidHeightSpawn, targetGrid.numberOfUnits * Random.insideUnitCircle.y);
+        Vector2 circle = Random.insideUnitCircle;
+        return new Vector3(targetGrid.numberOfUnits * circle.x, m_asteroidHeightSpawn, targetGrid.numberOfUnits * circle.y) + targetGrid.gridMiddlePoint;
+    }
+
+    private void OnDrawGizmosSelected ()
+    {
+        for (int i = 0; i < 10000; ++i)
+        {
+            Vector3 pos = RandomAsteroidPosition();
+            Gizmos.DrawLine(pos, pos + Vector3.up * 0.5f);
+            Gizmos.color = Color.red;
+        }
     }
 
     public void AddScore(int value)
