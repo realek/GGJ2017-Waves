@@ -6,10 +6,19 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Asteroid_1
+    100004: Asteroid_1_Collision_Mesh
     400000: //RootNode
+    400002: Asteroid_1
+    400004: Asteroid_1_Collision_Mesh
     2300000: //RootNode
+    2300002: Asteroid_1
+    2300004: Asteroid_1_Collision_Mesh
     3300000: //RootNode
+    3300002: Asteroid_1
+    3300004: Asteroid_1_Collision_Mesh
     4300000: Asteroid_1
+    4300002: Asteroid_1_Collision_Mesh
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -55,7 +64,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -71,10 +80,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -112,7 +112,7 @@ MeshCollider:
   m_Convex: 1
   m_InflateMesh: 1
   m_SkinWidth: 0.1
-  m_Mesh: {fileID: 4300000, guid: 7fa7a6b0db984424db0feebb5b7e9ab3, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 7fa7a6b0db984424db0feebb5b7e9ab3, type: 3}
 --- !u!82 &82917721559113466
 AudioSource:
   m_ObjectHideFlags: 1
@@ -310,9 +310,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourcePrefab: {fileID: 1089722489247476, guid: 7f8e43104dcbb4d4182478a0689551e8,
     type: 2}
-  crystalCh: 0.05
-  metalCh: 0.1
   rockCh: 0.4
+  metalCh: 0.1
+  crystalCh: 0.05
   m_scale: 1
   m_velocity: 110
   cParticles:

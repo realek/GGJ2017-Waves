@@ -8,12 +8,13 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private GameObject resourcePrefab;
     [SerializeField]
-    public float crystalCh;
+    public float rockCh;
     [SerializeField]
     public float metalCh;
     [SerializeField]
-    public float rockCh;
+    public float crystalCh;
     private bool collided = false;
+
     [SerializeField]
     private float m_scale;
     public float scale
@@ -38,13 +39,12 @@ public class Asteroid : MonoBehaviour
 
     public Player player;
     public AsteroidButton asteroidButton;
-    private Rigidbody rb;
+
 
     private void Awake ()
     {
         Invoke("CustomDestroy", 5f);
         transform.Rotate(Random.insideUnitSphere * 360);
-        rb = GetComponent<Rigidbody>();
         transform.localScale = new Vector3(m_scale, m_scale, m_scale);
     }
 
