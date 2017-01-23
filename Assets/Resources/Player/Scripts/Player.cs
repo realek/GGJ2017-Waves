@@ -35,7 +35,14 @@ public class Player : MonoBehaviour
         }
     }
     [SerializeField]
-    private float maxLevelScore;
+    private float m_maxLevelScore;
+    public float maxLevelScore
+    {
+        get
+        {
+            return m_maxLevelScore;
+        }
+    }
 
     public Slider scoreSlider;
     public Text scoreText;
@@ -46,7 +53,7 @@ public class Player : MonoBehaviour
     {
         get
         {
-            return m_score / maxLevelScore;
+            return m_score / m_maxLevelScore;
         }
     }
 
@@ -55,7 +62,7 @@ public class Player : MonoBehaviour
         m_source = GetComponent<AudioSource>();
         m_shipAgent = m_ship.GetComponent<NavMeshAgent>();
         m_tractored = new List<GridResource>();
-        m_score = 0.05f * maxLevelScore;
+        m_score = 0.05f * m_maxLevelScore;
     }
 
     private void Update ()
@@ -92,7 +99,7 @@ public class Player : MonoBehaviour
         }
         if (scoreText)
         {
-            scoreText.text = "Resources: " + m_score + "/" + maxLevelScore;
+            scoreText.text = "Resources: " + m_score + "/" + m_maxLevelScore;
         }
 
         // Move Ship
@@ -104,7 +111,10 @@ public class Player : MonoBehaviour
                 Vector3 projectedPos = hit.point;
                 projectedPos.y = m_navplane.position.y;
                 if (projectedPos != m_shipAgent.destination)
+                {
                     m_shipAgent.SetDestination(projectedPos);
+
+                }
             }
         }
 
@@ -119,10 +129,12 @@ public class Player : MonoBehaviour
                     {
                         AddScore(-selectedAsteroidButton.cost);
                         selectedAsteroidButton.Fire();
-                        Rigidbody meteor = Instantiate(selectedAsteroidButton.asteroid.gameObject).GetComponent<Rigidbody>();
-                        meteor.transform.position = RandomAsteroidPosition();
-                        var dir = targetGrid.SelectedUnit.transform.position - meteor.transform.position;
-                        meteor.AddForce(dir.normalized * selectedAsteroidButton.asteroid.velocity, ForceMode.VelocityChange);
+                        Rigidbody asteroid = Instantiate(selectedAsteroidButton.asteroid.gameObject).GetComponent<Rigidbody>();
+                        asteroid.transform.position = RandomAsteroidPosition();
+                        var dir = targetGrid.SelectedUnit.transform.position - asteroid.transform.position;
+                        asteroid.AddForce(dir.normalized * selectedAsteroidButton.asteroid.velocity, ForceMode.VelocityChange);
+                        asteroid.GetComponent<Asteroid>().player = this;
+                        asteroid.GetComponent < Asteroid>().asteroidButton = selectedAsteroidButton;
                     }
                 }
             }
@@ -138,7 +150,8 @@ public class Player : MonoBehaviour
 
     public Vector3 RandomAsteroidPosition ()
     {
-        Vector2 circle = Random.insideUnitCircle;
+        Vector2 circle = Random.insideUnitCircle + Random.insideUnitCircle;
+        circle /= 2f;
         return new Vector3(targetGrid.numberOfUnits * circle.x, m_asteroidHeightSpawn, targetGrid.numberOfUnits * circle.y) + targetGrid.gridMiddlePoint;
     }
 
@@ -157,9 +170,9 @@ public class Player : MonoBehaviour
         m_score += value;
     }
 
-    public void ReleaseAsteroidButton()
+    public void ReleaseAsteroidButton ()
     {
-        if(selectedAsteroidButton!=null)
+        if (selectedAsteroidButton != null)
         {
             selectedAsteroidButton.selectedImage.gameObject.SetActive(false);
             selectedAsteroidButton = null;

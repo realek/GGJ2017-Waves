@@ -34,49 +34,27 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private float m_density;
-    public float density
-    {
-        get
-        {
-            return m_density;
-        }
-    }
-
-    public float multiplier
-    {
-        get
-        {
-            return scale / Mathf.Sqrt(2);
-        }
-    }
-
-    public float impactForce
-    {
-        get
-        {
-            return velocity * rb.mass * density;
-        }
-    }
-
     public List<GameObject> cParticles = new List<GameObject>();
 
+    public Player player;
+    public AsteroidButton asteroidButton;
     private Rigidbody rb;
 
     private void Awake ()
     {
+        Invoke("CustomDestroy", 5f);
+        transform.Rotate(Random.insideUnitSphere * 360);
         rb = GetComponent<Rigidbody>();
         transform.localScale = new Vector3(m_scale, m_scale, m_scale);
     }
 
     private void OnCollisionEnter (Collision collision)
     {
-
         if (!collided)
         {
-            Destroy(gameObject, 0.15f);
-            Camera.main.transform.parent.GetComponent<CameraShake>().shakeAmplitude += scale*1.5f;
+            Debug.Log("Asteroid Collided!");
+            Invoke("CustomDestroy", 0.2f);
+            Camera.main.transform.parent.GetComponent<CameraShake>().shakeAmplitude += scale * 1.5f;
 
             foreach (GameObject g in cParticles)
             {
@@ -102,9 +80,20 @@ public class Asteroid : MonoBehaviour
                 res[i].transform.position = collision.contacts[Random.Range(0, collision.contacts.Length)].point + (Random.insideUnitSphere * 2);
                 res[i].transform.SetParent(Grid.currentInstance.transform);
             }
+            Debug.Log("Asteroid Completed Generating Resources!");
 
-                collided = true;
+            collided = true;
         }
+    }
 
+    private void CustomDestroy ()
+    {
+        if (!collided)
+        {
+            player.AddScore(asteroidButton.cost);
+            Debug.Log("Refunding...");
+        }
+        Debug.Log("Asteroid Destroyed!");
+        Destroy(gameObject);
     }
 }

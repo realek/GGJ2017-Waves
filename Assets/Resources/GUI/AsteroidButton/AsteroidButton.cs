@@ -33,11 +33,11 @@ public class AsteroidButton : MonoBehaviour
     {
         get
         {
-            if (m_timeUntilFire >= 0 && !GetComponent<Button>().interactable)
+            if (m_timeUntilFire <= 0 && GetComponent<Button>().interactable)
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
     }
 
@@ -46,7 +46,7 @@ public class AsteroidButton : MonoBehaviour
 
     void Update ()
     {
-        transform.GetChild(0).GetComponent<Text>().text = "Cost: " + cost + "\r\n" + asteroid.rockCh * 100 + "/" + asteroid.metalCh * 100 + "/" + asteroid.crystalCh * 100 + "%";
+        transform.GetChild(0).GetComponent<Text>().text = "Cost: " + cost + "\r\n" + asteroid.rockCh * 100 + "/" + asteroid.metalCh * 100 + "/" + asteroid.crystalCh * 100 + "%" + "\r\n" + "Unlocks at: " + player.maxLevelScore * unlockThreshold;
         Button btn = GetComponent<Button>();
         timerImage.fillAmount = fireRatePercentage;
 
