@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c981d70d64b186b4491fb9ada0ff7cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyTime: 10
   m_sounds:
   - {fileID: 8300000, guid: 76854c9a2fd1319439d2319a018bf281, type: 3}
   - {fileID: 8300000, guid: 09f25cd6a18b37541a4de7e27edf3509, type: 3}
@@ -147,7 +148,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1131327759495842}
   serializedVersion: 5
   lengthInSec: 1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1

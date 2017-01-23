@@ -94,6 +94,8 @@ public class Player : MonoBehaviour
         {
             scoreText.text = "Resources: " + m_score + "/" + maxLevelScore;
         }
+
+        // Move Ship
         if (Input.GetKey(KeyCode.Mouse1))
         {
             RaycastHit hit;
@@ -105,7 +107,9 @@ public class Player : MonoBehaviour
                     m_shipAgent.SetDestination(projectedPos);
             }
         }
-        if (Input.GetKey(KeyCode.Mouse0))
+
+        //Shoot Asteroid
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (selectedAsteroidButton != null)
             {

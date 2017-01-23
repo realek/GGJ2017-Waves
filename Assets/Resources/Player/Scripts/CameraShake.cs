@@ -5,17 +5,32 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
     public GameObject target;
+    [SerializeField]
+    public float shakeAmplitude;
 
     [SerializeField]
-    private float m_shakeAmplitude;
+    public float dampen;
+
+    public List<AudioClip> laugthers = new List<AudioClip>();
 
     [SerializeField]
-    private float dampen;
+    private AudioSource audioSource;
+
+    private void Awake ()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
 
     void Update ()
     {
-        target.transform.localPosition = Random.insideUnitSphere * m_shakeAmplitude;
-        m_shakeAmplitude *= dampen;
+        target.transform.localPosition = Random.insideUnitSphere * shakeAmplitude;
+        shakeAmplitude *= dampen;
+
+        if (shakeAmplitude > 3.14f && !audioSource.isPlaying)
+        {
+            audioSource.clip = laugthers[Random.Range(0, laugthers.Count)];
+            audioSource.Play();
+        }
     }
 }
